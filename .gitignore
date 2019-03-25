@@ -1,0 +1,9 @@
+dist
+build
+venv
+*.[oa]
+*egg-info
+*.pyc
+*.swp
+*.txt
+

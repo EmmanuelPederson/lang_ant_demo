@@ -12,7 +12,7 @@ def face_off(iterations):
     for i in range(iterations):
         c_res = run_lang_ant_c(i)
         py_res = run_lang_ant_py(i)
-        if abs(py_res - c_res) > 0.0001:
+        if py_res != c_res:
             print('failed at {}'.format(i))
             return
     print('No differences')

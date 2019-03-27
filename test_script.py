@@ -16,12 +16,12 @@ def run_lang_ant_c(iterations):
 if __name__ == '__main__':
     c = int(sys.argv[1])
     n = int(sys.argv[2])
-    print('%d executions with n: %d' % (c, n))
-    print('C lang ant: %d took %.3f seconds' % (
+    print('{} executions with n: {}'.format(c, n))
+    print('C lang ant: {} took {:.3f} seconds'.format(
             run_lang_ant_c(n),
             timeit.timeit('run_lang_ant_c(n)', number=c, globals=globals()),
     ))
-    print('Python lang ant: %d took %.3f seconds' % (
+    print('Python lang ant: {} took {:.3f} seconds'.format(
             run_lang_ant_py(n),
             timeit.timeit('run_lang_ant_py(n)', number=c, globals=globals()),
     ))

@@ -10,6 +10,7 @@ static PyObject* sim_lang_ant(PyObject *self, PyObject *args){
     int state_cnt;
     unsigned int n;
     StateDirRule state_dir_rule;
+    XYPos final_pos;
 
     if(!PyArg_ParseTuple(args, "y#i", &rule_def, &state_cnt, &n)){
         return NULL;
@@ -22,7 +23,8 @@ static PyObject* sim_lang_ant(PyObject *self, PyObject *args){
             state_dir_rule.state_dir_arr[i] = rule_def[i] ? rule_def[i] : -1;
         }
         state_dir_rule.state_dir_cnt = state_cnt;
-        return PyFloat_FromDouble(langtons_ant(state_dir_rule, n));
+        final_pos = langtons_ant(state_dir_rule, n);
+        return Py_BuildValue("(i, i)", final_pos.x, final_pos.y);
     }
 }
 

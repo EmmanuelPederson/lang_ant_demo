@@ -1,6 +1,4 @@
-from itertools import product
-from math import sqrt
-from typing import Tuple, Dict, Iterator
+from typing import Tuple, Dict
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 LEFT = 1
@@ -81,10 +79,6 @@ class Runner(object):
     def get_state(pos: Pos, state_dict: Dict[Pos, State]) -> State:
         return state_dict.get(pos, DEFAULT_STATE)
 
-    @staticmethod
-    def dist(pos1: Pos, pos2: Pos) -> float:
-        return sqrt(sum((y - x) ** 2 for x, y in zip(pos1, pos2)))
-
     def run(self, rule: Rule, iterations: int) -> float:
         initial_pos = (0, 0)
         state_dict = {initial_pos: DEFAULT_STATE}
@@ -97,12 +91,5 @@ class Runner(object):
             state_dict[pos] = new_state
             cur_dir = rule.get_new_direction(cur_state, cur_dir)
             pos = self.get_new_position(pos, cur_dir)
-        return self.dist(pos, initial_pos)
+        return pos
 
-
-def get_all_rules(states: int) -> Iterator[DictBasedRule]:
-    """
-    Return all the rules that can be constructed for a given number of states
-    """
-    return (DictBasedRule(dict(enumerate(p))) for p in
-            product((LEFT, RIGHT), repeat=states))

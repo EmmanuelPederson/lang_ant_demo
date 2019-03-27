@@ -1,6 +1,7 @@
 /*
- * Langton's Ant program will calculate the distance
- * that an "ant" will travel from a starting point. 
+ * Langton's Ant program will calculate the final position
+ * of an ant's movement after n iterations. Starting point
+ * is (0, 0).
  * 
  * Emmanuel Pederson 23 February 2019
  */
@@ -41,12 +42,6 @@ static XYPos get_new_position(XYPos pos, Dir dir){
     XYPos change = DIR_POS_VALS[dir];
     XYPos new_pos = {pos.x + change.x, pos.y + change.y};
     return new_pos;
-}
-
-static double dist(XYPos pos1, XYPos pos2){
-    double x_dist = (double)(pos2.x - pos1.x);
-    double y_dist = (double)(pos2.y - pos1.y);
-    return sqrt((x_dist * x_dist) + (y_dist * y_dist));
 }
 
 static PosState *new_pos_state(XYPos pos, State state){
@@ -97,7 +92,7 @@ static HashTable *check_htable(HashTable *htable){
     }
 }
 
-double langtons_ant(StateDirRule state_dir_rule, int iterations){
+XYPos langtons_ant(StateDirRule state_dir_rule, int iterations){
     PosState *cur_pos_state;
     HashTable *htable;
     PosStateList *ps_list_head, *ps_list_last;
@@ -127,6 +122,5 @@ double langtons_ant(StateDirRule state_dir_rule, int iterations){
     }
     free_pos_state_list(ps_list_head);
     free_xypos_hash(htable);
-    //printf("final pos: (%d, %d)\n", cur_pos.x, cur_pos.y);
-    return dist(cur_pos, initial_pos);
+    return cur_pos;
 }

@@ -1,6 +1,6 @@
 
 lang_ant_runner: main.o lang_ant.o pos_hash.o dict_lang_rule.o
-	gcc -o bin/lang_ant_runner build/main.o build/lang_ant.o build/pos_hash.o build/dict_lang_rule.o -lm
+	gcc -O3 -o bin/lang_ant_runner build/main.o build/lang_ant.o build/pos_hash.o build/dict_lang_rule.o -lm
 
 main.o: src/main.c
 	gcc -c -o build/main.o src/main.c

@@ -70,13 +70,13 @@ static PosStateList *new_pos_state_list_item(PosState *pos_state){
 }
 
 static void free_pos_state_list(PosStateList *pos_state_list){
-    if(pos_state_list->next == NULL){
-        free(pos_state_list->pos_state);
-        free(pos_state_list);
-    }else{
-        free_pos_state_list(pos_state_list->next);
-        free(pos_state_list->pos_state);
-        free(pos_state_list); 
+    PosStateList *cur, *temp;
+    cur = pos_state_list;
+    while (cur){
+        temp = cur->next;
+        free(cur->pos_state);
+        free(cur); 
+        cur = temp;
     }
 }
 

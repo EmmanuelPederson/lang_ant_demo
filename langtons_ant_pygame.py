@@ -1,11 +1,9 @@
-# Define some colors
-
 from typing import Dict, List, Tuple
 
 import pygame
 
 from langtons_ant_sim import LangAntSim
-from langtons_ant import Rule, Pos
+from langtons_ant import Rule, Pos, State
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -42,7 +40,7 @@ class LangAntGame(object):
         self.cell_height = cell_height
         self.cell_margin = cell_margin
         self.lang_ant_sim = LangAntSim(lang_rule)
-        self.grid = [[0] * cols for _ in range(rows)]
+        self.grid = [[0] * self.cols for _ in range(self.rows)]
         self.color_dict = color_dict
         self.color_dict[-1] = BLACK
 
@@ -119,10 +117,12 @@ class LangAntGame(object):
         screen.fill(BLACK)
         for row in range(len(self.grid)):
             for col in range(len(self.grid[0])):
-                self.draw_rect(screen, (row, col), grid_w_coords[row][col])
+                self.draw_rect(screen, (col, row), grid_w_coords[row][col])
 
     @classmethod
-    def update_grid_with_coords(cls, grid, coords):
+    def update_grid_with_coords(
+            cls, grid: List[List], coords: Dict[Pos, State]
+    ) -> List[List]:
         for pos, value in coords.items():
             grid_pos = cls.pos_to_grid_pos(pos, grid)
             if cls.is_on_grid(grid_pos, grid):
@@ -133,10 +133,10 @@ class LangAntGame(object):
     def pos_to_grid_pos(cls, pos: Pos, grid: List[List]) -> Pos:
         x, y = pos
         grid_x = x + len(grid[0]) // 2
-        grid_y = y + len(grid) // 2
+        grid_y = (-1 * y) + len(grid) // 2
         return grid_x, grid_y
 
     @classmethod
     def is_on_grid(cls, pos: Pos, grid: List[List]) -> bool:
         return (pos[0] >= 0 and pos[1] >= 0
-                and pos[0] < len(grid) and pos[1] < len(grid[0]))
+                and pos[0] < len(grid[0]) and pos[1] < len(grid))

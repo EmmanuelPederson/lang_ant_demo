@@ -1,6 +1,7 @@
 dist
 build
 venv
+.idea
 *.[oa]
 *egg-info
 *.pyc

@@ -8,6 +8,8 @@
 
 #include "lang_ant_types.h"
 
+StateDirRule *make_rule_from_str(const char *seq);
+
 State new_state(State state, StateDirRule *state_dir_rule);
 
 Dir new_dir(State state, Dir direction, StateDirRule *state_dir_rule);

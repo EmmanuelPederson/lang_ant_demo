@@ -6,7 +6,7 @@ def run_lang_ant_py(iterations):
     return Runner().run(StrBasedRule('lrr'), iterations=iterations)
 
 def run_lang_ant_c(iterations):
-    return lang_ant.sim_lang_ant(bytes([1, 0, 0]), iterations)
+    return lang_ant.sim_lang_ant('lrr', iterations)
 
 def face_off(iterations):
     for i in range(iterations):

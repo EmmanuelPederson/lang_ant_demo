@@ -92,7 +92,7 @@ static HashTable *check_htable(HashTable *htable){
     }
 }
 
-XYPos langtons_ant(StateDirRule state_dir_rule, int iterations){
+XYPos langtons_ant(StateDirRule *state_dir_rule, int iterations){
     PosState *cur_pos_state;
     HashTable *htable;
     PosStateList *ps_list_head, *ps_list_last;
@@ -115,8 +115,8 @@ XYPos langtons_ant(StateDirRule state_dir_rule, int iterations){
             ps_list_last->next = new_pos_state_list_item(cur_pos_state);
             ps_list_last = ps_list_last->next;
         }
-        cur_dir = new_dir(cur_pos_state->state, cur_dir, &state_dir_rule);
-        cur_pos_state->state = new_state(cur_pos_state->state, &state_dir_rule);
+        cur_dir = new_dir(cur_pos_state->state, cur_dir, state_dir_rule);
+        cur_pos_state->state = new_state(cur_pos_state->state, state_dir_rule);
         cur_pos = get_new_position(cur_pos, cur_dir);
         htable = check_htable(htable);
     }

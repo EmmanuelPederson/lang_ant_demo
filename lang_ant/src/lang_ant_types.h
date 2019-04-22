@@ -34,7 +34,7 @@ typedef struct {
     int state_dir_arr[MAX_RULES];  
 } StateDirRule; 
 
-XYPos langtons_ant(StateDirRule state_dir_rule, int iterations);
+XYPos langtons_ant(StateDirRule *state_dir_rule, int iterations);
 
 typedef enum{
     RIGHT = 0,

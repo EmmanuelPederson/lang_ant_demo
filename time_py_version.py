@@ -7,7 +7,7 @@ def run_lang_ant_py(iterations):
     return Runner().run(StrBasedRule('lrr'), iterations=iterations)
 
 def run_lang_ant_c(iterations):
-    return lang_ant.sim_lang_ant(bytes([1, 0, 0]), iterations)
+    return lang_ant.sim_lang_ant('lrr', iterations)
 
 if __name__ == '__main__':
     c = int(sys.argv[1])

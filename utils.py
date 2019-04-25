@@ -9,13 +9,15 @@ from langtons_ant import DictBasedRule, LEFT, RIGHT, Pos
 
 
 def dist(pos1: Pos, pos2: Pos) -> float:
+    """
+    Return the distance between two positions
+    """
     return sqrt(sum((y - x) ** 2 for x, y in zip(pos1, pos2)))
 
 
-def get_all_rules(states: int) -> Iterator[DictBasedRule]:
+def get_all_rules(states: int) -> Iterator[str]:
     """
-    Return all the rules that can be constructed for a given number of states
+    Return all rules that can be constructed for a given number of states
     """
-    return (DictBasedRule(dict(enumerate(p))) for p in
-            product((LEFT, RIGHT), repeat=states))
+    return map(''.join, product('lr', repeat=states))
 

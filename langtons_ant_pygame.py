@@ -11,6 +11,9 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 PURPLE = (128, 0, 128)
 BLUE = (0, 0, 255)
+MAROON = (128, 0, 0)
+TEAL = (0, 128, 128)
+OLIVE = (128, 128, 0)
 GREY = (105, 105, 105)
 
 
@@ -29,7 +32,7 @@ class LangAntGame(object):
     ):
         if not color_dict:
             color_dict = dict(
-                enumerate([WHITE, GREEN, RED, PURPLE, BLUE, GREY])
+                enumerate([WHITE, GREEN, RED, PURPLE, BLUE, MAROON, TEAL, OLIVE, GREY])
             )
 
         self.rows = rows

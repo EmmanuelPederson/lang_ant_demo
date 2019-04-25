@@ -7,7 +7,7 @@
 
 #ifndef LANG_ANT_TYPES_HEADER
 #define LANG_ANT_TYPES_HEADER
-#define MAX_RULES 10
+#define MAX_RULES 20
 
 typedef unsigned char State;
 

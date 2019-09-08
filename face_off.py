@@ -14,6 +14,8 @@ def face_off(iterations):
         py_res = run_lang_ant_py(i)
         if py_res != c_res:
             print('failed at {}'.format(i))
+            print('c: {}'.format(c_res))
+            print('py: {}'.format(py_res))
             return
     print('No differences')
 

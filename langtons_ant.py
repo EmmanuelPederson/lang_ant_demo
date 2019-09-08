@@ -1,4 +1,4 @@
-from typing import Tuple, Dict
+from typing import Tuple, Dict, List
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 LEFT = 1
@@ -93,3 +93,42 @@ class Runner(object):
             pos = self.get_new_position(pos, cur_dir)
         return pos
 
+
+class MultiAntRunner(object):
+
+    def __init__(self, rule:Rule):
+        self.rule = rule
+
+    @staticmethod
+    def get_new_position(pos: Pos, direction: Dir) -> Pos:
+        new_dir = DIRECTIONS[direction]
+        return pos[0] + new_dir[0], pos[1] + new_dir[1]
+
+    @staticmethod
+    def get_state(pos: Pos, state_dict: Dict[Pos, State]) -> State:
+        return state_dict.get(pos, DEFAULT_STATE)
+
+    def run(
+            self,
+            iterations: int,
+            pos_list: List[Pos],
+            dir_list: List[Dir],
+            state_dict: Dict[Pos, State]
+    ):
+        num_ants = len(pos_list)
+        all_updates = dict()
+        for _ in range(iterations):
+            step_updates = dict()
+            for i in range(num_ants):
+                cur_pos = pos_list[i]
+                cur_dir = dir_list[i]
+                cur_state = self.get_state(cur_pos, state_dict)
+                new_state = self.rule.get_new_state(cur_state)
+                step_updates[cur_pos] = new_state
+                cur_dir = self.rule.get_new_direction(cur_state, cur_dir)
+                cur_pos = self.get_new_position(cur_pos, cur_dir)
+                pos_list[i] = cur_pos
+                dir_list[i] = cur_dir
+            state_dict.update(step_updates)
+            all_updates.update(step_updates)
+        return all_updates

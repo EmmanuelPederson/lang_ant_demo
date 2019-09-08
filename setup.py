@@ -13,7 +13,7 @@ lang_ant_ext = setuptools.Extension(
 
 setuptools.setup(
     name='LangAnt',
-    version='1.0',
+    version='0.1',
     ext_modules=[lang_ant_ext],
     summary="Run simulation following the rules of Langton's Ant",
     description="""Langton's Ant describes a 2D simulation of an ant's

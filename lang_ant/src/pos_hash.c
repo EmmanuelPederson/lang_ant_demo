@@ -75,7 +75,6 @@ void *search_table(HashTable *htable, XYPos pos, void *data, Action action){
     return NULL;
 } 
 
-
 /*
  * Rehashes the given table and returns a new table,
  * the old table will not be freed, so the caller is
@@ -94,7 +93,6 @@ HashTable *rehash(HashTable *htable, int nel){
     }
     return new_table;
 }
-
 
 static void free_hash_elem(HashElem *hash_elem){
     if(hash_elem->next == NULL){

@@ -12,6 +12,7 @@ def run_lang_ant_py(iterations):
 def run_lang_ant_c(iterations):
     return lang_ant.sim_lang_ant('lrr', iterations)
 
+
 def run_lang_ant_colony_c(iterations):
     return lang_ant.sim_lang_ant_colony('lrr', iterations, 2)
 

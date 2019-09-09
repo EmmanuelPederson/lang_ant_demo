@@ -17,16 +17,22 @@ struct HashTable {
     HashElem **elements;
 };
 
+typedef struct MemHashTable MemHashTable; 
+struct MemHashTable {
+    HashTable *htable;
+    PosStateList *head;
+    PosStateList *tail;
+};
+
 typedef enum {ENTER, SEARCH} Action;
 
-HashTable *create_xypos_hash(int);
+/* Public functions */
+MemHashTable *create_mem_htable(int nel);
 
-HashElem *_make_new_hash_elem(XYPos, void *data);
+void free_mem_htable(MemHashTable *mem_htable);
 
-void *search_table(HashTable *, XYPos, void *data, Action);
+PosState *add_state_pos(MemHashTable *, XYPos, State);
 
-void free_xypos_hash(HashTable *);
-
-HashTable *rehash(HashTable *, int);
+PosState *get_state_pos(MemHashTable *, XYPos);
 
 #endif

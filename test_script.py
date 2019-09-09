@@ -12,6 +12,9 @@ def run_lang_ant_py(iterations):
 def run_lang_ant_c(iterations):
     return lang_ant.sim_lang_ant('lrr', iterations)
 
+def run_lang_ant_colony_c(iterations):
+    return lang_ant.sim_lang_ant_colony('lrr', iterations, 2)
+
 
 if __name__ == '__main__':
     c = int(sys.argv[1])
@@ -20,6 +23,10 @@ if __name__ == '__main__':
     print('C lang ant: {} took {:.3f} seconds'.format(
             run_lang_ant_c(n),
             timeit.timeit('run_lang_ant_c(n)', number=c, globals=globals()),
+    ))
+    print('C lang ant colony: {} took {:.3f} seconds'.format(
+            run_lang_ant_colony_c(n),
+            timeit.timeit('run_lang_ant_colony_c(n)', number=c, globals=globals()),
     ))
     print('Python lang ant: {} took {:.3f} seconds'.format(
             run_lang_ant_py(n),
